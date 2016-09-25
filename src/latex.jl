@@ -34,9 +34,6 @@ end
 
 function to_latex(text)
     io = IOBuffer()
-    for (k,v) in latex_symbol_map
-        text = replace(text, k, v) # this is a really stupid way of doing it
-    end
     idx = start(text)
     while !done(text, idx)
         char, idx = next(text, idx)
@@ -51,6 +48,16 @@ function to_latex(text)
                     end
                 end
                 if mod == "\\" # no match was found
+                    # is this a latex symbol?
+                    for (k,v) in latex_symbol_map
+                        if startswith(ss, k)
+                            print(io, v) # replace
+                            for i=1:length(k) # move forward
+                                idx = nextind(text, idx)
+                            end
+                            break
+                        end
+                    end
                     continue # ignore '\' mod
                 else
                     for i=1:length(mod) # move forward
