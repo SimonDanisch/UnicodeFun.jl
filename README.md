@@ -6,4 +6,13 @@
 [![codecov](https://codecov.io/gh/SimonDanisch/UnicodeFun.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/SimonDanisch/UnicodeFun.jl)
 
 
-unicode transformation library offering e.g. latex --> unicode
+unicode transformation library offering e.g. latex --> unicode:
+
+```Julia
+latexstring = "\\alpha^2 \\cdot \\alpha^{2+3} \\equiv \\alpha^7"
+to_latex(latexstring) == "α² ⋅ α²⁺³ ≡ α⁷"
+```
+
+
+Lookup tables taken from:
+https://github.com/ypsu/latex-to-unicode/tree/master/data
