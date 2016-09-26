@@ -19,15 +19,14 @@ function print_modifier(io, mod, substring)
         error("Modifier $mod not supported")
     end
 end
-
-function utf8_findnext(str, v, idx)
-    lastidx = idx
-    char, idx = next(str, idx)
-    while true
-        char == v && return lastidx
+"""
+Base findnext doesn't handle utf8 strings correctly
+"""
+function Base.findnext(A::AbstractString, v::Char, idx::Integer)
+    while !done(A, idx)
         lastidx = idx
-        done(str, idx) && break
-        char, idx = next(str, idx)
+        elem, idx = next(A, idx)
+        elem == v && return lastidx
     end
     0
 end
@@ -67,7 +66,7 @@ function to_latex(text)
             end
             char, idx = next(text, idx)
             if char == '{'
-                i = utf8_findnext(text, '}', idx)
+                i = findnext(text, '}', idx)
                 if i == 0
                     error("Invalid latex. Couldn't find matching } in $(text[idx:end])")
                 end
