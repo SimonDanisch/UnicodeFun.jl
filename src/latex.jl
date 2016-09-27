@@ -22,7 +22,7 @@ end
 """
 Base findnext doesn't handle utf8 strings correctly
 """
-function Base.findnext(A::AbstractString, v::Char, idx::Integer)
+function utf8_findnext(A::AbstractString, v::Char, idx::Integer)
     while !done(A, idx)
         lastidx = idx
         elem, idx = next(A, idx)
@@ -66,7 +66,7 @@ function to_latex(text)
             end
             char, idx = next(text, idx)
             if char == '{'
-                i = findnext(text, '}', idx)
+                i = utf8_findnext(text, '}', idx)
                 if i == 0
                     error("Invalid latex. Couldn't find matching } in $(text[idx:end])")
                 end
