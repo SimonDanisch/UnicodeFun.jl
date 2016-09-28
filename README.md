@@ -11,6 +11,22 @@ unicode transformation library offering e.g. latex --> unicode:
 ```Julia
 latexstring = "\\alpha^2 \\cdot \\alpha^{2+3} \\equiv \\alpha^7"
 to_latex(latexstring) == "α² ⋅ α²⁺³ ≡ α⁷"
+latexstring = "\\itA \\in \\bbR^{nxn}, \\bfv \\in \\bbR^n, \\lambda_i \\in \\bbR: \\itA\\bfv = \\lambda_i\\bfv"
+==> "𝐴 ∈ ℝⁿˣⁿ, 𝐯 ∈ ℝⁿ, λᵢ ∈ ℝ: 𝐴𝐯 = λᵢ𝐯"
+latexstring = "\\bf{boldface} \\it{italic} \\bb{blackboard} \\cal{calligraphic} \\frak{fraktur} \\mono{monospace}"
+==> "𝐛𝐨𝐥𝐝𝐟𝐚𝐜𝐞 𝑖𝑡𝑎𝑙𝑖𝑐 𝕓𝕝𝕒𝕔𝕜𝕓𝕠𝕒𝕣𝕕 𝓬𝓪𝓵𝓵𝓲𝓰𝓻𝓪𝓹𝓱𝓲𝓬 𝔣𝔯𝔞𝔨𝔱𝔲𝔯 𝚖𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎"
+```
+
+Currently offered functions:
+```Julia
+to_superscript
+to_subscript
+to_blackboardbold
+to_boldface
+to_italic
+to_caligraphic
+to_frakture
+to_latex
 ```
 
 
