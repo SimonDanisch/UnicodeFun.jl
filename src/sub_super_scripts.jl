@@ -157,3 +157,45 @@ let superscript_map = Dict(
         superscript_map[x]
     end
 end
+
+
+"""
+Turns given `numerator` and `denominator` into a fraction:
+```
+to_fraction("a-123", 392) -->
+ᵃ⁻¹²³⁄₃₉₂
+ ```
+ Restricted to characters that can be turned into superscript and subscript.
+ For a more general translation, see to_fraction_nl (newline)
+"""
+function to_fraction(numerator, denominator)
+    sprint() do io
+        to_fraction(io, numerator, denominator)
+    end
+end
+
+function to_fraction(io::IO, numerator, denominator)
+    to_superscript(io, numerator)
+    print(io, Char(0x2044))
+    to_subscript(io, denominator)
+end
+
+"""
+Turns given `numerator` and `denominator` into a fraction with a newline:
+```
+to_fraction("α² ⋅ α²⁺³ ≡ α⁷", " ℝ: 𝐴𝐯 = λᵢ𝐯") -->
+
+α̲²̲ ̲⋅̲ ̲α̲²̲⁺̲³̲ ̲≡̲ ̲α̲⁷̲
+ ℝ: 𝐴𝐯 = λᵢ𝐯
+ ```
+"""
+function to_fraction_nl(numerator, denominator)
+    sprint() do io
+        to_fraction_nl(io, numerator, denominator)
+    end
+end
+function to_fraction_nl(io::IO, numerator, denominator)
+    to_underline(io, numerator)
+    println(io)
+    print(io, denominator)
+end

@@ -496,3 +496,19 @@ for (f, map) in (
         end
     end
 end
+"""
+Underlines a text
+"""
+function to_underline(x::AbstractString)
+    sprint() do io
+        to_underline(io, x)
+    end
+end
+function to_underline(io::IO, x::Char)
+    print(io, x, Char(0x0332))
+end
+function to_underline(io::IO, x::AbstractString)
+    for c in x
+        to_underline(io, c)
+    end
+end
