@@ -11,3 +11,8 @@ latexstring = "\\itA \\in \\bbR^{nxn}, \\bfv \\in \\bbR^n, \\lambda_i \\in \\bbR
 @test to_latex(latexstring) == "𝐴 ∈ ℝⁿˣⁿ, 𝐯 ∈ ℝⁿ, λᵢ ∈ ℝ: 𝐴𝐯 = λᵢ𝐯"
 latexstring = "\\bf{boldface} \\it{italic} \\bb{blackboard} \\cal{calligraphic} \\frak{fraktur} \\mono{monospace}"
 @test to_latex(latexstring) == "𝐛𝐨𝐥𝐝𝐟𝐚𝐜𝐞 𝑖𝑡𝑎𝑙𝑖𝑐 𝕓𝕝𝕒𝕔𝕜𝕓𝕠𝕒𝕣𝕕 𝓬𝓪𝓵𝓵𝓲𝓰𝓻𝓪𝓹𝓱𝓲𝓬 𝔣𝔯𝔞𝔨𝔱𝔲𝔯 𝚖𝚘𝚗𝚘𝚜𝚙𝚊𝚌𝚎"
+
+@test to_fraction("a-123", 392) == "ᵃ⁻¹²³⁄₃₉₂"
+
+@test to_fraction_nl("α² ⋅ α²⁺³ ≡ α⁷", "ℝ: 𝐴𝐯 = λᵢ𝐯") == "α̲²̲ ̲⋅̲ ̲α̲²̲⁺̲³̲ ̲≡̲ ̲α̲⁷̲
+ℝ: 𝐴𝐯 = λᵢ𝐯"
