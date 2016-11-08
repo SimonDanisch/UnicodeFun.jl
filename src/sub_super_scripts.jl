@@ -82,6 +82,7 @@ function to_superscript(io::IO, x::Int)
 end
 
 let superscript_map = Dict(
+        '.' => '⋅',
         '0' => '⁰',
         '1' => '¹',
         '2' => '²',
