@@ -1,4 +1,5 @@
 latex_symbol_map = Dict(
+    ";" => " ",
     "texttrademark" => '™',
     "trademark" => '™',
     "textregistered" => '®',
