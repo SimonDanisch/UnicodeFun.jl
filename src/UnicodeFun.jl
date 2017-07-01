@@ -18,4 +18,7 @@ export to_overline
 include("latex.jl")
 export to_latex
 
+include("roots.jl")
+export to_root
+
 end # module

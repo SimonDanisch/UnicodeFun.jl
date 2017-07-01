@@ -20,3 +20,9 @@ latexstring = "\\bf{boldface} \\it{italic} \\bb{blackboard} \\cal{calligraphic} 
 ℝ: 𝐴𝐯 = λᵢ𝐯"
 @test to_overline("abc") == "a̅b̅c̅"
 @test to_underline("abc") == "a̲b̲c̲"
+
+@test to_root("542") == "√5̅4̅2̅"
+@test to_root(3,"542") == "∛5̅4̅2̅"
+@test to_root(4,"542") == "∜5̅4̅2̅"
+@test to_root(17,"542") == "¹⁷√5̅4̅2̅"
+
