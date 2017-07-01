@@ -16,3 +16,5 @@ latexstring = "\\bf{boldface} \\it{italic} \\bb{blackboard} \\cal{calligraphic} 
 
 @test to_fraction_nl("α² ⋅ α²⁺³ ≡ α⁷", "ℝ: 𝐴𝐯 = λᵢ𝐯") == "α̲²̲ ̲⋅̲ ̲α̲²̲⁺̲³̲ ̲≡̲ ̲α̲⁷̲
 ℝ: 𝐴𝐯 = λᵢ𝐯"
+@test to_overline("abc") == "a̅b̅c̅"
+@test to_underline("abc") == "a̲b̲c̲"

@@ -512,3 +512,20 @@ function to_underline(io::IO, x::AbstractString)
         to_underline(io, c)
     end
 end
+
+"""
+Overlines a text
+"""
+function to_overline(x::AbstractString)
+    sprint() do io
+        to_overline(io, x)
+    end
+end
+function to_overline(io::IO, x::Char)
+    print(io, x, Char(0x0305))
+end
+function to_overline(io::IO, x::AbstractString)
+    for c in x
+        to_overline(io, c)
+    end
+end
