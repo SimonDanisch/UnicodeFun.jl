@@ -12,8 +12,13 @@ export to_boldface
 export to_italic
 export to_caligraphic
 export to_frakture
+export to_underline
+export to_overline
 
 include("latex.jl")
 export to_latex
+
+include("roots.jl")
+export to_root
 
 end # module
