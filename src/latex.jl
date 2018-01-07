@@ -79,5 +79,5 @@ function to_latex(text)
             print(io, char)
         end
     end
-    return takebuf_string(io)
+    return String(take!(io))
 end
