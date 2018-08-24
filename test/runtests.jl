@@ -1,5 +1,5 @@
 using UnicodeFun
-using Base.Test
+using Test
 
 # write your own tests here
 @test UnicodeFun.to_superscript(-1234567890) == "⁻¹²³⁴⁵⁶⁷⁸⁹⁰"
@@ -25,4 +25,3 @@ latexstring = "\\bf{boldface} \\it{italic} \\bb{blackboard} \\cal{calligraphic} 
 @test to_root(3,"542") == "∛5̅4̅2̅"
 @test to_root(4,"542") == "∜5̅4̅2̅"
 @test to_root(17,"542") == "¹⁷√5̅4̅2̅"
-
