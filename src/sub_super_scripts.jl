@@ -58,6 +58,7 @@ let subscript_map = Dict(
         'φ' => 'ᵩ',
         'χ' => 'ᵪ',
     )
+    global to_subscript
     function to_subscript(x::Char)
         haskey(subscript_map, x) || error("Char $x doesn't have a unicode superscript")
         subscript_map[x]
@@ -153,6 +154,7 @@ let superscript_map = Dict(
         'φ' => 'ᵠ',
         'χ' => 'ᵡ'
     )
+    global to_superscript
     function to_superscript(x::Char)
         haskey(superscript_map, x) || error("Char $x doesn't have a unicode superscript")
         superscript_map[x]

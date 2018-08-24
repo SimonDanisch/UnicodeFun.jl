@@ -23,9 +23,11 @@ end
 Base findnext doesn't handle utf8 strings correctly
 """
 function utf8_findnext(A::AbstractString, v::Char, idx::Integer)
-    while !done(A, idx)
+    while true
         lastidx = idx
-        elem, idx = next(A, idx)
+        elem_idx = iterate(A, idx)
+        elem_idx === nothing && break
+        elem, idx = elem_idx
         elem == v && return lastidx
     end
     0
@@ -33,13 +35,19 @@ end
 
 function to_latex(text)
     io = IOBuffer()
-    idx = start(text)
-    while !done(text, idx)
-        char, idx = next(text, idx)
+    charidx = iterate(text)
+    charidx === nothing && return ""
+    char, idx = charidx
+    started = true
+    while true
+        started || (charidx = iterate(text, idx))
+        started = false
+        charidx === nothing && break
+        char, idx = charidx
         if char in ('^', '_', '\\')
             mod = string(char)
             if mod == "\\"
-                ss = SubString(text, idx, endof(text))
+                ss = SubString(text, idx, lastindex(text))
                 for mod_candidate in ("bb", "bf", "it", "cal", "frak", "mono")
                     if startswith(ss, mod_candidate)
                         mod = mod_candidate
@@ -64,14 +72,14 @@ function to_latex(text)
                     end
                 end
             end
-            char, idx = next(text, idx)
+            char, idx = iterate(text, idx)
             if char == '{'
                 i = utf8_findnext(text, '}', idx)
                 if i == 0
                     error("Invalid latex. Couldn't find matching } in $(text[idx:end])")
                 end
                 print_modifier(io, mod, SubString(text, idx, prevind(text, i)))
-                char, idx = next(text, i)
+                char, idx = iterate(text, i)
             else
                 print_modifier(io, mod, char)
             end
