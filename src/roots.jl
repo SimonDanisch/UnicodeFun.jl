@@ -1,5 +1,8 @@
 function to_root(io::IO, root, val)
-    root == 1 && return val
+    if root == 1
+        write(io, string(val))
+        return
+    end
     if root == 3
         print(io, '∛')
     elseif root == 4
