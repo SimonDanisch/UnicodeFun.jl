@@ -1,2 +1,3 @@
 # Here, we collect and reverse the REPL's latex autocompletion map.
-latex_symbol_map = REPL.symbols_latex |> collect .|> (x -> (x[2][2:end] => x[1])) |> x -> Dict(x...)
+using REPL
+const latex_symbol_map = Dict((k => v[1] for (k, v) in REPL.REPLCompletions.latex_symbols))
