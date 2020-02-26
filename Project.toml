@@ -1,5 +1,7 @@
 name = "UnicodeFun"
 uuid = "1cfade01-22cf-5700-b092-accc4b62d6e1"
+authors = ["Simon Danisch"]
+version = "0.5.0"
 
 [deps]
 REPL = "3fa0cd96-eef1-5676-8a61-b3b8758bbffb"
