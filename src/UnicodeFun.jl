@@ -1,6 +1,11 @@
 module UnicodeFun
 
-include("symbols.jl")
+using REPL
+
+# Here, we collect and reverse the REPL's latex autocompletion map.
+const symbols_unsorted = [k[2:end] => v[1] for (k, v) in REPL.REPLCompletions.latex_symbols]
+
+const latex_symbol_map = sort!(symbols_unsorted, by=(x)-> length(x[1]), rev=true)
 
 include("sub_super_scripts.jl")
 export to_superscript, to_subscript
