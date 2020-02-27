@@ -14,8 +14,6 @@ function to_superscript(io::IO, x::AbstractString)
     end
 end
 
-
-
 function to_subscript(io::IO, x::Int)
     if x in 0:9
         print(io, Char(0x2080+x))

@@ -56,10 +56,10 @@ function to_latex(text)
                 end
                 if mod == "\\" # no match was found
                     # is this a latex symbol?
-                    for (k,v) in latex_symbol_map
+                    for (k, v) in latex_symbol_map
                         if startswith(ss, k)
                             print(io, v) # replace
-                            for i=1:length(k) # move forward
+                            for i in 1:length(k) # move forward
                                 idx = nextind(text, idx)
                             end
                             break
@@ -67,7 +67,7 @@ function to_latex(text)
                     end
                     continue # ignore '\' mod
                 else
-                    for i=1:length(mod) # move forward
+                    for i in 1:length(mod) # move forward
                         idx = nextind(text, idx)
                     end
                 end
