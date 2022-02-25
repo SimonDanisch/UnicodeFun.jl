@@ -67,7 +67,7 @@ let subscript_map = Dict(
     )
     global to_subscript
     function to_subscript(x::Char)
-        haskey(subscript_map, x) || error("Char $x doesn't have a unicode superscript")
+        haskey(subscript_map, x) || error("Char $x doesn't have a unicode subscript")
         subscript_map[x]
     end
 end
